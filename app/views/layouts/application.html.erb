@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <title>SyukuhakuApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -8,9 +9,41 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-    <%= yield %>
+
+    <% if flash[:notice] %>
+    <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <% if flash[:alert] %>
+    <p class="alert"><%= alert %></p>
+    <% end %>
+
+    <header>
+        
+      <%= link_to root_path, class: "navbar_item" do %>
+        <h1>やどかりロゴ<h1>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path , method: :delete, class: "navbar_item" do %>
+          <h1>ログアウト<h1>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_registration_path, class: "navbar_item" do %>
+          <h1>新規登録<h1>
+        <% end %>
+
+        <%= link_to new_user_session_path, class: "navbar_item" do %>
+          <h1>ログイン<h1>
+        <% end %>
+      <% end %>
+
+    </header>
+
+      <%= yield %>
   </body>
 </html>
