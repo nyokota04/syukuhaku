@@ -1,0 +1,12 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+
+<p>名前</>
+<%= @user.user_name %>
+<% if @user.id == current_user.id %>
+<p>メール</p>
+<%= @user.email %>
+
+<%= link_to "編集" ,edit_user_path(@user) %>
+<% end %>

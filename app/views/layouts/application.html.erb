@@ -29,6 +29,14 @@
       <% end %>
 
       <% if user_signed_in? %>
+      <%= current_user.email %>
+      <%= current_user.user_name %>
+      <%= link_to user_path(current_user), class: "navbar_item" do %>
+        <p>詳細</p>
+      <% end %>
+
+      <%= link_to current_user.user_name, user_path(current_user) %>
+      
         <%= link_to destroy_user_session_path , method: :delete, class: "navbar_item" do %>
           <h1>ログアウト<h1>
         <% end %>
@@ -40,7 +48,11 @@
         <%= link_to new_user_session_path, class: "navbar_item" do %>
           <h1>ログイン<h1>
         <% end %>
-      <% end %>
+      <% end %>      
+
+      <div>
+      
+
 
     </header>
 
